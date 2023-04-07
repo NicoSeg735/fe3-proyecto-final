@@ -1,27 +1,31 @@
-import Form from './components/Form'
-import Card from './components/Card'
-import { useState } from 'react'
+import React from 'react'
+import { routes, Login } from './Navigation/Routes.js'
+import { ProtectedRoutes } from './components/ProtectedRoute'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import SessionProvider from './contexts/Session.jsx'
+import ThemeProvider from './contexts/Theme.jsx'
 
 function App() {
-	const initialValues = {
-		name: '',
-		phone: '',
-		email: ''
-	}
-
-	const [formValues, setFormValues] = useState(initialValues)
-
 	return (
-		<div className='bg-slate-900 min-h-screen w-full flex justify-start py-12 items-center flex-col gap-4 text-white'>
-			<div className='w-full text-center'>
-				<h1 className='text-3xl font-bold'>Frontend III</h1>
-				<h2 className='text-xl font-semibold'>
-					Formulario de contacto
-				</h2>
-			</div>
-			<Form setFormValues={setFormValues} initialValues={initialValues} />
-			{formValues.name !== '' && <Card values={formValues} />}
-		</div>
+		<SessionProvider>
+			<ThemeProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route path='/login' element={<Login />} />
+						<Route element={<ProtectedRoutes />}>
+							{routes.map(({ id, path, Component }) => (
+								<Route
+									key={id}
+									path={path}
+									element={<Component />}
+								/>
+							))}
+						</Route>
+						<Route path='/' element={<Navigate to='/login' />} />
+					</Routes>
+				</BrowserRouter>
+			</ThemeProvider>
+		</SessionProvider>
 	)
 }
 
