@@ -3,6 +3,6 @@ import { Navigate, Outlet } from 'react-router'
 import { SessionContext } from '../contexts/Session'
 
 export const ProtectedRoutes = () => {
-	const { isLogged } = useContext(SessionContext)
-	return isLogged ? <Outlet /> : <Navigate to='/login' />
+	const { state } = useContext(SessionContext)
+	return state.isLogged ? <Outlet /> : <Navigate to='/login' />
 }
