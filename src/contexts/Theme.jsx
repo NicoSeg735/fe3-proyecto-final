@@ -1,35 +1,34 @@
-import React, { createContext } from 'react'
-import { useEffect } from 'react'
+import React, { createContext, useReducer, useEffect } from 'react'
 
 export const ThemeContext = createContext({})
 
-const ThemeProvider = ({ children }) => {
-	useEffect(() => {
-		if (
-			localStorage.theme === 'dark' ||
-			(!('theme' in localStorage) &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches)
-		) {
-			document.documentElement.classList.add('dark')
-			localStorage.setItem('theme', 'dark')
-		} else {
-			document.documentElement.classList.remove('dark')
-			localStorage.setItem('theme', 'light')
-		}
-	}, [])
+const handleDispatch = (state, { type, payload }) => {
+	switch (type) {
+		case 'SWITCH':
+			if (state.theme === 'dark') {
+				document.documentElement.classList.remove('dark')
+				localStorage.removeItem('theme')
+				return { ...state, theme: null }
+			} else {
+				document.documentElement.classList.add('dark')
+				localStorage.setItem('theme', 'dark')
+				return { ...state, theme: 'dark' }
+			}
 
-	const switchMode = () => {
-		if (localStorage.theme === 'dark') {
-			document.documentElement.classList.remove('dark')
-			localStorage.setItem('theme', 'light')
-		} else {
-			document.documentElement.classList.add('dark')
-			localStorage.setItem('theme', 'dark')
-		}
+		default:
+			return state
+	}
+}
+
+const ThemeProvider = ({ children }) => {
+	const initialState = {
+		theme: localStorage.getItem('theme')
 	}
 
+	const [state, dispatch] = useReducer(handleDispatch, initialState)
+
 	return (
-		<ThemeContext.Provider value={{ switchMode }}>
+		<ThemeContext.Provider value={{ state, dispatch }}>
 			{children}
 		</ThemeContext.Provider>
 	)

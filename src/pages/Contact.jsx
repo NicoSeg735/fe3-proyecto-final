@@ -1,31 +1,29 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { SessionContext } from '../contexts/Session'
+import React, { useState } from 'react'
+import MainLayout from '../layouts/MainLayout'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import Input from '../components/Input'
 import Button from '../components/Button'
-import LoginLayout from '../layouts/LoginLayout'
 
-const Login = () => {
-	const { dispatch } = useContext(SessionContext)
-	const navigate = useNavigate()
+const Contact = () => {
+
+	const [isSubmitted, setIsSubmitted] = useState(false)
 
 	const initialValues = {
-		user: '',
-		password: ''
+		fullName: '',
+		email: ''
 	}
 
 	const schema = Yup.object().shape({
-		user: Yup.string()
-			.trim('No debe tener espacios al inicio o final')
-			.strict()
-			.min(3, 'Debe tener al menos 3 (tres) caracteres')
-			.required('Campo obligatorio'),
-		password: Yup.string()
+		fullName: Yup.string()
 			.trim('No debe tener espacios al inicio o final')
 			.strict()
 			.min(6, 'Debe tener al menos 6 (seis) caracteres')
+			.required('Campo obligatorio'),
+		email: Yup.string()
+			.trim('No debe tener espacios al inicio o final')
+			.strict()
+			.email()
 			.required('Campo obligatorio')
 	})
 
@@ -34,38 +32,38 @@ const Login = () => {
 			initialValues: initialValues,
 			validationSchema: schema,
 			onSubmit: () => {
-				dispatch({ type: 'LOGIN', payload: values.user })
-				navigate('/')
+				setIsSubmitted(true)
 			},
 			validateOnChange: false
 		})
 
 	const resetPage = () => {
 		handleReset()
+		setIsSubmitted(false)
 	}
 
 	return (
-		<LoginLayout>
+		<MainLayout>
 			<div className='flex-1 flex-col gap-4 p-12 w-full flex justify-start items-center'>
-				<h1 className='text-2xl font-bold'>Inicio de sesión</h1>
+				<h1 className='text-2xl font-bold'>Contacto</h1>
 				<form
 					onSubmit={handleSubmit}
 					className='flex flex-col w-full max-w-sm p-4 gap-2'
 				>
 					<Input
-						label='Usuario'
-						name='user'
-						value={values.user}
+						label='Nombre completo'
+						name='fullName'
+						value={values.fullName}
 						onChange={handleChange}
-						error={errors.user}
+						error={errors.fullName}
 					/>
 					<Input
-						type='password'
-						label='Contraseña'
-						name='password'
-						value={values.password}
+						type='email'
+						label='Correo electrónico'
+						name='email'
+						value={values.email}
 						onChange={handleChange}
-						error={errors.password}
+						error={errors.email}
 					/>
 					<div className='flex flex-col items-center gap-4 sm:flex-row'>
 						<Button type='button' onClick={resetPage} secondary>
@@ -75,13 +73,18 @@ const Login = () => {
 					</div>
 					{!isValid && (
 						<span className='w-full text-center text-red-400 font-semibold'>
-							Por favor chequea que la información sea correcta
+							Por favor verifique su información nuevamente
+						</span>
+					)}
+					{isSubmitted && (
+						<span className='w-full text-center text-green-600 font-semibold'>
+							Gracias {values.fullName}, te contactaremos cuando antes vía mail
 						</span>
 					)}
 				</form>
 			</div>
-		</LoginLayout>
+		</MainLayout>
 	)
 }
 
-export default Login
+export default Contact

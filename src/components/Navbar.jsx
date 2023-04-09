@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { SessionContext } from '../contexts/Session'
 
 const Navbar = () => {
-	const { switchMode } = useContext(ThemeContext)
-	const { state, dispatch } = useContext(SessionContext)
+	const { dispatch: dispatchTheme } = useContext(ThemeContext)
+	const { state, dispatch: dispatchSession } = useContext(SessionContext)
 	const navigate = useNavigate()
 
 	const logout = () => {
-		dispatch({ type: 'LOGOUT' })
+		dispatchSession({ type: 'LOGOUT' })
 		navigate('/login')
 	}
 
@@ -23,7 +23,7 @@ const Navbar = () => {
 				<li>Otro</li>
 			</ul> */}
 			<span>{state.user ?? ''}</span>
-			<button onClick={switchMode}>Switch</button>
+			<button onClick={() => dispatchTheme({ type: 'SWITCH' })}>Switch</button>
 			<button onClick={logout}>Cerrar sesion</button>
 		</nav>
 	)
