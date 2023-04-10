@@ -22,6 +22,23 @@ const handleDispatch = (state, { type, payload }) => {
 				isLogged: false,
 				user: null
 			}
+		case 'SWITCH_FAV':
+			if (state.favs.includes(payload)) {
+				localStorage.setItem(
+					'favs',
+					state.favs.filter(f => f !== payload)
+				)
+				return {
+					...state,
+					favs: state.favs.filter(f => f !== payload)
+				}
+			} else {
+				localStorage.setItem('favs', [...state.favs, payload])
+				return {
+					...state,
+					favs: [...state.favs, payload]
+				}
+			}
 		default:
 			return state
 	}
@@ -30,7 +47,11 @@ const handleDispatch = (state, { type, payload }) => {
 const SessionProvider = ({ children }) => {
 	const initialState = {
 		isLogged: sessionStorage.getItem('token') !== null,
-		user: sessionStorage.getItem('user')
+		user: sessionStorage.getItem('user'),
+		favs:
+			localStorage.getItem('favs') !== null
+				? localStorage.getItem('favs').split(',').map(Number)
+				: []
 	}
 
 	const [state, dispatch] = useReducer(handleDispatch, initialState)
