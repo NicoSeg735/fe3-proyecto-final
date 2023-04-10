@@ -9,7 +9,7 @@ const handleDispatch = (state, { type, payload }) => {
 	switch (type) {
 		case 'GET':
 			return {
-				...state
+				...state,
 			}
 		default:
 			return state
@@ -20,15 +20,13 @@ const UsersDataProvider = ({ children }) => {
 	const { values } = useGetData(USERS_API)
 
 	const initialState = {
-		users: values
+		users: values,
 	}
 
 	const [state, dispatch] = useReducer(handleDispatch, initialState)
 
 	return (
-		<UsersDataContext.Provider value={{ state, dispatch }}>
-			{children}
-		</UsersDataContext.Provider>
+		<UsersDataContext.Provider value={{ state, dispatch }}>{children}</UsersDataContext.Provider>
 	)
 }
 

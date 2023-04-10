@@ -8,22 +8,22 @@ export const routes = [
 	{
 		id: 1,
 		path: '/',
-		Component: Home
+		Component: Home,
 	},
 	{
 		id: 2,
 		path: '/dentist/:id',
-		Component: Dentist
+		Component: Dentist,
 	},
 	{
 		id: 3,
 		path: '/contact',
-		Component: Contact
+		Component: Contact,
 	},
 	{
 		id: 4,
 		path: '/favs',
-		Component: Favs
+		Component: Favs,
 	},
 ]
 

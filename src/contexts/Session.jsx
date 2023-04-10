@@ -13,14 +13,14 @@ const handleDispatch = (state, { type, payload }) => {
 			return {
 				...state,
 				isLogged: true,
-				user: payload
+				user: payload,
 			}
 		case 'LOGOUT':
 			sessionStorage.clear()
 			return {
 				...state,
 				isLogged: false,
-				user: null
+				user: null,
 			}
 		case 'SWITCH_FAV':
 			if (state.favs.includes(payload)) {
@@ -30,13 +30,13 @@ const handleDispatch = (state, { type, payload }) => {
 				)
 				return {
 					...state,
-					favs: state.favs.filter(f => f !== payload)
+					favs: state.favs.filter(f => f !== payload),
 				}
 			} else {
 				localStorage.setItem('favs', [...state.favs, payload])
 				return {
 					...state,
-					favs: [...state.favs, payload]
+					favs: [...state.favs, payload],
 				}
 			}
 		default:
@@ -49,18 +49,12 @@ const SessionProvider = ({ children }) => {
 		isLogged: sessionStorage.getItem('token') !== null,
 		user: sessionStorage.getItem('user'),
 		favs:
-			localStorage.getItem('favs') !== null
-				? localStorage.getItem('favs').split(',').map(Number)
-				: []
+			localStorage.getItem('favs') !== null ? localStorage.getItem('favs').split(',').map(Number) : [],
 	}
 
 	const [state, dispatch] = useReducer(handleDispatch, initialState)
 
-	return (
-		<SessionContext.Provider value={{ state, dispatch }}>
-			{children}
-		</SessionContext.Provider>
-	)
+	return <SessionContext.Provider value={{ state, dispatch }}>{children}</SessionContext.Provider>
 }
 
 export default SessionProvider

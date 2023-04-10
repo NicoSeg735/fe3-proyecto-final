@@ -12,9 +12,7 @@ const Dentist = () => {
 	return (
 		<MainLayout>
 			<h1>Inicio</h1>
-			<div className='grid grid-cols-1 w-full gap-4 max-w-xl p-4'>
-				{values?.id}
-			</div>
+			<div className='grid grid-cols-1 w-full gap-4 max-w-xl p-4'>{values?.id}</div>
 		</MainLayout>
 	)
 }

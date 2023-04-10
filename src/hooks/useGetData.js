@@ -13,9 +13,9 @@ export const useGetData = endpoint => {
 			.catch(error => {
 				console.error(error)
 			})
-	}, [])
+	}, [endpoint])
 
 	return {
-		values
+		values,
 	}
 }

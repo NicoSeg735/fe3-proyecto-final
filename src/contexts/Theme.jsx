@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from 'react'
+import React, { createContext, useReducer } from 'react'
 
 export const ThemeContext = createContext({})
 
@@ -22,16 +22,12 @@ const handleDispatch = (state, { type, payload }) => {
 
 const ThemeProvider = ({ children }) => {
 	const initialState = {
-		theme: localStorage.getItem('theme')
+		theme: localStorage.getItem('theme'),
 	}
 
 	const [state, dispatch] = useReducer(handleDispatch, initialState)
 
-	return (
-		<ThemeContext.Provider value={{ state, dispatch }}>
-			{children}
-		</ThemeContext.Provider>
-	)
+	return <ThemeContext.Provider value={{ state, dispatch }}>{children}</ThemeContext.Provider>
 }
 
 export default ThemeProvider

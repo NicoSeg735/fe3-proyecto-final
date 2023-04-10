@@ -12,13 +12,15 @@ const Favs = () => {
 
 	return (
 		<MainLayout>
-			<h1>Favoritos</h1>
-			<div className='grid grid-cols-1 w-full gap-4 max-w-xl p-4'>
-				{values
-					?.filter(v => state.favs.includes(v.id))
-					.map(user => (
-						<Card key={user.id} user={user} />
-					))}
+			<div className='max-w-2xl p-6 flex flex-col gap-4 w-full'>
+				<h1 className='text-left font-bold text-2xl w-full my-2'>Favoritos</h1>
+				<div className='grid grid-cols-1 w-full gap-4 sm:grid-cols-2'>
+					{values
+						?.filter(v => state.favs.includes(v.id))
+						.map(user => (
+							<Card key={user.id} user={user} />
+						))}
+				</div>
 			</div>
 		</MainLayout>
 	)

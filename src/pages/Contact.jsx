@@ -6,12 +6,11 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 
 const Contact = () => {
-
 	const [isSubmitted, setIsSubmitted] = useState(false)
 
 	const initialValues = {
 		fullName: '',
-		email: ''
+		email: '',
 	}
 
 	const schema = Yup.object().shape({
@@ -24,18 +23,17 @@ const Contact = () => {
 			.trim('No debe tener espacios al inicio o final')
 			.strict()
 			.email()
-			.required('Campo obligatorio')
+			.required('Campo obligatorio'),
 	})
 
-	const { handleSubmit, handleChange, handleReset, values, errors, isValid } =
-		useFormik({
-			initialValues: initialValues,
-			validationSchema: schema,
-			onSubmit: () => {
-				setIsSubmitted(true)
-			},
-			validateOnChange: false
-		})
+	const { handleSubmit, handleChange, handleReset, values, errors, isValid } = useFormik({
+		initialValues,
+		validationSchema: schema,
+		onSubmit: () => {
+			setIsSubmitted(true)
+		},
+		validateOnChange: false,
+	})
 
 	const resetPage = () => {
 		handleReset()
@@ -44,15 +42,13 @@ const Contact = () => {
 
 	return (
 		<MainLayout>
-			<div className='flex-1 flex-col gap-4 p-12 w-full flex justify-start items-center'>
-				<h1 className='text-2xl font-bold'>Contacto</h1>
-				<form
-					onSubmit={handleSubmit}
-					className='flex flex-col w-full max-w-sm p-4 gap-2'
-				>
+			<div className='max-w-sm  p-6 flex flex-col gap-4 w-full items-center'>
+				<h1 className='text-left font-bold text-2xl w-full my-2'>Contacto</h1>
+				<form onSubmit={handleSubmit} className='flex flex-col w-full gap-2'>
 					<Input
 						label='Nombre completo'
 						name='fullName'
+						placeholder='Ingrese nombre completo'
 						value={values.fullName}
 						onChange={handleChange}
 						error={errors.fullName}
@@ -60,6 +56,7 @@ const Contact = () => {
 					<Input
 						type='email'
 						label='Correo electrónico'
+						placeholder='Ingrese correo electrónico'
 						name='email'
 						value={values.email}
 						onChange={handleChange}
@@ -69,7 +66,7 @@ const Contact = () => {
 						<Button type='button' onClick={resetPage} secondary>
 							Limpiar
 						</Button>
-						<Button type='submit'>Iniciar sesión</Button>
+						<Button type='submit'>Enviar</Button>
 					</div>
 					{!isValid && (
 						<span className='w-full text-center text-red-400 font-semibold'>

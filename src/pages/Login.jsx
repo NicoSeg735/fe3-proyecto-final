@@ -13,7 +13,7 @@ const Login = () => {
 
 	const initialValues = {
 		user: '',
-		password: ''
+		password: '',
 	}
 
 	const schema = Yup.object().shape({
@@ -26,19 +26,18 @@ const Login = () => {
 			.trim('No debe tener espacios al inicio o final')
 			.strict()
 			.min(6, 'Debe tener al menos 6 (seis) caracteres')
-			.required('Campo obligatorio')
+			.required('Campo obligatorio'),
 	})
 
-	const { handleSubmit, handleChange, handleReset, values, errors, isValid } =
-		useFormik({
-			initialValues: initialValues,
-			validationSchema: schema,
-			onSubmit: () => {
-				dispatch({ type: 'LOGIN', payload: values.user })
-				navigate('/')
-			},
-			validateOnChange: false
-		})
+	const { handleSubmit, handleChange, handleReset, values, errors, isValid } = useFormik({
+		initialValues,
+		validationSchema: schema,
+		onSubmit: () => {
+			dispatch({ type: 'LOGIN', payload: values.user })
+			navigate('/')
+		},
+		validateOnChange: false,
+	})
 
 	const resetPage = () => {
 		handleReset()
@@ -48,10 +47,7 @@ const Login = () => {
 		<LoginLayout>
 			<div className='flex-1 flex-col gap-4 p-12 w-full flex justify-start items-center'>
 				<h1 className='text-2xl font-bold'>Inicio de sesión</h1>
-				<form
-					onSubmit={handleSubmit}
-					className='flex flex-col w-full max-w-sm p-4 gap-2'
-				>
+				<form onSubmit={handleSubmit} className='flex flex-col w-full max-w-sm p-4 gap-2'>
 					<Input
 						label='Usuario'
 						name='user'
