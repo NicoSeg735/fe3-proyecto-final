@@ -85,8 +85,8 @@ const Sidebar = ({ size, menuOpen, className = '', handleBlockScroll, setMenuOpe
 						<Link
 							to={path}
 							className={
-								'flex items-center h-10 px-3 py-2 gap-2 cursor-pointer rounded-md hover:bg-slate-700 duration-300 ' +
-								(path === pathname ? 'bg-slate-600' : '') +
+								'flex items-center h-10 px-3 py-2 gap-2 cursor-pointer rounded-md hover:bg-indigo-700 duration-300 ' +
+								(path === pathname ? 'bg-indigo-600' : '') +
 								(menuOpen ? ' w-[184px]' : ' w-full')
 							}
 						>
@@ -103,7 +103,7 @@ const Sidebar = ({ size, menuOpen, className = '', handleBlockScroll, setMenuOpe
 					) : (
 						<div
 							className={
-								'flex items-center h-10 px-3 py-2 gap-2 cursor-pointer rounded-md hover:bg-slate-700 duration-300 ' +
+								'flex items-center h-10 px-3 py-2 gap-2 cursor-pointer rounded-md hover:bg-indigo-700 duration-300 ' +
 								(menuOpen ? ' w-[184px]' : ' w-full')
 							}
 						>
@@ -182,7 +182,7 @@ const Sidebar = ({ size, menuOpen, className = '', handleBlockScroll, setMenuOpe
 						size.height === undefined ? `calc(100vh - 4rem)` : (size.height - 64).toString() + 'px',
 				}}
 				className={
-					'sticky top-16 z-10 bg-slate-800 duration-300 ' +
+					'sticky top-16 z-10 bg-[#1e1b4b] duration-300 ' +
 					(menuOpen ? 'w-52 sm:overflow-hidden ' : 'w-0 overflow-hidden sm:w-16 sm:overflow-visible ') +
 					className
 				}

@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import useWindowSize from '../hooks/useWindowsSize'
 import useScrollBlock from '../hooks/useScrollBlock'
 import Sidebar from '../components/Sidebar'
+import Footer from '../components/Footer'
 
 const MainLayout = ({ children }) => {
 	const [menuOpen, setMenuOpen] = useState(false)
@@ -30,7 +31,10 @@ const MainLayout = ({ children }) => {
 					size={windowSize}
 					handleBlockScroll={handleBlockScroll}
 				/>
-				<div className='flex flex-col flex-1 w-full items-center bg-slate-100 mt-16'>{children}</div>
+				<div className='flex flex-col flex-1'>
+					<div className='flex flex-col flex-1 w-full items-center bg-slate-100 mt-16'>{children}</div>
+					<Footer />
+				</div>
 			</div>
 		</div>
 	)
