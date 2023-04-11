@@ -14,7 +14,7 @@ const Dentist = () => {
 			{values !== undefined && (
 				<div className='max-w-2xl p-6 flex flex-col gap-4 w-full'>
 					<h1 className='text-left font-bold text-2xl w-full my-2'>Dentista</h1>
-					<div className='grid grid-cols-2 gap-4 p-4 rounded-lg bg-slate-200 border border-slate-300'>
+					<div className='grid grid-cols-2 gap-4 p-4 rounded-lg bg-slate-200 border border-slate-300 dark:bg-slate-900 dark:border-slate-700 duration-200'>
 						<div className='flex flex-col'>
 							<label className='font-semibold text-sm'>ID</label>
 							<span className='text-lg'>{values?.id}</span>

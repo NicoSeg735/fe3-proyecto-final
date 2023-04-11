@@ -22,7 +22,7 @@ const MainLayout = ({ children }) => {
 	}
 
 	return (
-		<div className='bg-slate-50 min-h-screen w-full flex flex-1 items-center flex-col dark:text-white dark:bg-slate-900'>
+		<div className='min-h-screen w-full flex flex-1 items-center flex-col dark:text-white duration-200'>
 			<Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} handleBlockScroll={handleBlockScroll} />
 			<div className='flex flex-1 w-full relative'>
 				<Sidebar
@@ -32,7 +32,7 @@ const MainLayout = ({ children }) => {
 					handleBlockScroll={handleBlockScroll}
 				/>
 				<div className='flex flex-col flex-1'>
-					<div className='flex flex-col flex-1 w-full items-center bg-slate-100 mt-16'>{children}</div>
+					<div className='flex flex-col flex-1 w-full items-center bg-slate-100 mt-16 dark:bg-slate-800 duration:200'>{children}</div>
 					<Footer />
 				</div>
 			</div>

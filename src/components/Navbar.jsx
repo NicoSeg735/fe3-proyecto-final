@@ -21,20 +21,20 @@ const Navbar = ({ setMenuOpen, menuOpen, handleBlockScroll, username }) => {
 
 	return (
 		<nav className='fixed top-0 z-40 left-0 right-0 select-none'>
-			<div className='h-16 flex w-full justify-between text-slate-800 bg-white items-center gap-2 py-4 px-5 shadow-lg'>
+			<div className='h-16 flex w-full justify-between text-slate-800 bg-white items-center gap-2 py-4 px-5 shadow-lg dark:bg-indigo-600 duration-200'>
 				<div className='flex justify-between items-center gap-2 w-full relative'>
 					<div
 						onClick={handleMenuOpen}
-						className='relative duration-200 hover:bg-slate-200 w-8 h-8 p-[4px] rounded-full flex justify-center items-center cursor-pointer'
+						className='relative duration-200 hover:bg-slate-200 w-8 h-8 p-[4px] rounded-full flex justify-center items-center cursor-pointer dark:text-white dark:hover:bg-indigo-800'
 					>
 						<FontAwesomeIcon icon={faBars} />
 					</div>
 					<div onClick={handleGoHome} className='p-1'>
 						<Link to='/' className='flex justify-center items-center py-2 px-4'>
-							<FontAwesomeIcon icon={faTooth} className='text-indigo-600' />
+							<FontAwesomeIcon icon={faTooth} className='text-indigo-600 dark:text-white duration-200' />
 						</Link>
 					</div>
-					<div className='w-8 h-8 flex items-center justify-center rounded-full p-3 border-[1.5px] border-slate-800'>
+					<div className='w-8 h-8 flex items-center justify-center rounded-full p-3 border-[1.5px] border-slate-800 dark:text-white dark:border-white'>
 						<span className='text-xs font-medium select-none'>{initials}</span>
 					</div>
 				</div>

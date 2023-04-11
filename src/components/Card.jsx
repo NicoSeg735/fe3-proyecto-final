@@ -10,7 +10,7 @@ const Card = ({ user }) => {
 
 	return (
 		<Link
-			className='flex flex-col gap-2 w-full p-4 bg-slate-200 duration-200 hover:shadow-md dark:bg-slate-800 rounded-lg cursor-pointer'
+			className='flex flex-col gap-2 w-full p-4 bg-slate-200 duration-200 hover:shadow-md dark:bg-slate-900 rounded-lg cursor-pointer'
 			to={'/dentist/' + user.id}
 		>
 			<div className='flex items-center justify-between'>
@@ -18,7 +18,7 @@ const Card = ({ user }) => {
 					<img src='/img/doctor.jpg' alt='' className='rounded-full w-8' />
 					<div className='flex flex-col'>
 						<span className='text-lg font-semibold leading-tight'>{user.name}</span>
-						<span className='text-sm text-slate-600 leading-tight italic'>{user.username}</span>
+						<span className='text-sm text-slate-600 leading-tight italic dark:text-slate-400'>{user.username}</span>
 					</div>
 				</div>
 				<div

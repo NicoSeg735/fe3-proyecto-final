@@ -154,7 +154,7 @@ const Sidebar = ({ size, menuOpen, className = '', handleBlockScroll, setMenuOpe
 						leaveTo='opacity-0 scale-95'
 					>
 						<div className='flex min-h-full items-center justify-center p-4 fixed inset-0'>
-							<Dialog.Panel className='w-full max-w-sm rounded-lg bg-white p-5 flex flex-col gap-6'>
+							<Dialog.Panel className='w-full max-w-sm rounded-lg bg-white p-5 flex flex-col gap-6 dark:bg-slate-700 dark:text-white'>
 								<Dialog.Title className='text-2xl font-semibold'>Cerrar sesión</Dialog.Title>
 								<Dialog.Description>Seguro que deseas cerrar sesión?</Dialog.Description>
 								<div className='flex gap-2 w-full justify-between'>
